@@ -10,13 +10,14 @@ reason: we have to iterate over once the texts list and once the calls list
 Task2:
 order: O(n + 4) => O(n)
 reason: we have to iterate over only th calls list, and we have to do 4 actions in worst case on every
-iteration
+iteration, and as I use max() instead of sorted(), i could lower the order from
+O(n log n) to O(n)
 
 Task3:
-order: O(n + 5 + n log n) => O(n)
+order: O(n + 5 + n log n) => O(n log n)
 reason: we have to iterate over once on the calls array, and need 5 steps in worst case scenario to
-finish all steps in the given step, and as I use max() instead of sorted(), i could lower the order from
-O(n log n) to O(n).
+finish all steps in the given step, and as we have to sort the result set, it will make the order of
+the script O(n log n)
 
 Task4:
 order: O(2n + 3 + n log n) => O(n log n)
