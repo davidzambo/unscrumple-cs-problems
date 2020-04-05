@@ -46,38 +46,44 @@ The percentage should have 2 decimal digits
 """
 
 codes = set()
-called_fix_numbers = {"sum": 0, "to_fixed": 0}
+called_from_fixed_line_stat = {"sum": 0, "to_fixed": 0}
 
 
-def fixed_line_call_stat(to_number):
-    called_fix_numbers["sum"] += 1
+def update_from_fixed_line_to_fixed_line_call_stat(to_number):
+    called_from_fixed_line_stat["sum"] += 1
     if to_number[:5] == '(080)':
-        called_fix_numbers["to_fixed"] += 1
+        called_from_fixed_line_stat["to_fixed"] += 1
 
 
 for call in calls:
-    fixed_line_match = re.match(r'\(0\d+\)', call[0])
+    if call[0][:5] != '(080)':
+        continue
+
+    update_from_fixed_line_to_fixed_line_call_stat(call[1])
+
+    fixed_line_match = re.match(r'\(0\d+\)', call[1])
     if fixed_line_match:
         codes.add(fixed_line_match.group()[1:-1])
-        if fixed_line_match.group() == "(080)":
-            fixed_line_call_stat(call[1])
-    else:
-        mobile_match = re.match(r'([789]\d{4}\s\d+)', call[0])
-        if mobile_match:
-            codes.add(mobile_match.group()[0:4])
-        else:
-            marketing_match = re.match(r'(140\d+)', call[0])
-            if marketing_match:
-                codes.add(marketing_match.group()[0:3])
+        continue
+
+    mobile_match = re.match(r'([789]\d{4}\s\d+)', call[1])
+    if mobile_match:
+        codes.add(mobile_match.group()[0:4])
+        continue
+
+    telemarketers_match = re.match(r'(140\d+)', call[1])
+    if telemarketers_match:
+        codes.add(telemarketers_match.group()[0:3])
 
 """
 Part A
 """
-print("The numbers called by people in Bangalore have codes:\n", '\n'.join(map(str, sorted(codes))))
+print("The numbers called by people in Bangalore have codes:\n{}"
+      .format("\n".join(map(str, sorted(codes)))))
 
 """
 Part B
 """
 print("\n{:.2f} percent of calls from fixed lines in Bangalore are calls \
 to other fixed lines in Bangalore.".format(
-    called_fix_numbers["to_fixed"] / called_fix_numbers["sum"] * 100))
+    called_from_fixed_line_stat["to_fixed"] / called_from_fixed_line_stat["sum"] * 100))

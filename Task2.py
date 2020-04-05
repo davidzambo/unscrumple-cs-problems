@@ -34,6 +34,7 @@ for call in calls:
     register_call(call[0], call[3])
     register_call(call[1], call[3])
 
-number, dur = sorted(phone_numbers.items(), key=lambda x: x[1], reverse=True)[0]
+longest = max(phone_numbers, key=lambda k: phone_numbers[k])
 
-print("{} spent the longest time, {} seconds, on the phone during September 2016".format(number, dur))
+print("{} spent the longest time, {} seconds, on the phone during September 2016"
+      .format(longest, phone_numbers[longest]))
