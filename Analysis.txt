@@ -1,0 +1,22 @@
+Task0:
+order: O(1)
+reason: we do not have to iterate over any lists, just get the first and the last values, which are
+independent from the input.
+
+Task1:
+order: O(2n + 4) => O(n)
+reason: we have to iterate over once the texts list and once the calls list
+
+Task2:
+order: O(n + 4) for registering the phone numbers
+reason: we have to iterate over only th calls list, and we have to do 4 actions in worst case on every
+iteration
+
+Task3:
+order: O(n + 5)
+reason: we have to iterate over once on the calls array, and need 5 steps in worst case scenario to
+finish all steps in the given step.
+
+Task4:
+order: O(2n + 3)
+reason: we do 2 iterations and do 1 + 2 step
