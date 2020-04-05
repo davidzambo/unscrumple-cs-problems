@@ -25,7 +25,8 @@ Print a message:
 The list of numbers should be print out one per line in lexicographic order with no duplicates.
 """
 
-possible_marketers = []
+possible_marketers = set()
+receivers = set()
 
 
 def remove_number(phone_number):
@@ -34,11 +35,13 @@ def remove_number(phone_number):
 
 
 for call in calls:
-    if call[0] not in possible_marketers:
-        possible_marketers.append(call[0])
+    possible_marketers.add(call[0])
+    receivers.add(call[1])
 
 for text in texts:
     remove_number(text[0])
     remove_number(text[1])
+
+possible_marketers -= receivers
 
 print("These numbers could be telemarketers: \n", '\n'.join(map(str, sorted(possible_marketers))))

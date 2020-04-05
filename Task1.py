@@ -19,20 +19,15 @@ Print a message:
 "There are <count> different telephone numbers in the records."
 """
 
-
-def check_number(num):
-    if num not in unique_numbers:
-        unique_numbers.append(num)
-
-
-unique_numbers = []
+unique_numbers = set()
 
 for record in texts:
-    check_number(record[0])
-    check_number(record[1])
+    unique_numbers.add(record[0])
+    unique_numbers.add(record[1])
 
 for record in calls:
-    check_number(record[0])
-    check_number(record[1])
+    unique_numbers.add(record[0])
+    unique_numbers.add(record[1])
+
 
 print("There are %s different telephone numbers in the records." % len(unique_numbers))

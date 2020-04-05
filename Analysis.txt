@@ -8,7 +8,7 @@ order: O(2n + 4) => O(n)
 reason: we have to iterate over once the texts list and once the calls list
 
 Task2:
-order: O(n + 4) for registering the phone numbers
+order: O(n + 4) => O(n)
 reason: we have to iterate over only th calls list, and we have to do 4 actions in worst case on every
 iteration
 
